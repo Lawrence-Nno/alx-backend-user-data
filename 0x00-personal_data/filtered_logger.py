@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Module for handling Personal Data
+A function called filter_datum that returns the log message obfuscated
 """
 from typing import List
 import re
