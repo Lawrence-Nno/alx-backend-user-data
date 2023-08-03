@@ -11,7 +11,8 @@ PII_FIELDS: List = ['name', 'email', 'phone', 'ssn', 'password']
 
 
 class RedactingFormatter(logging.Formatter):
-    """ Redacting Formatter Class """
+    """ Redacting Formatter class
+        """
 
     REDACTION = "***"
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
@@ -19,15 +20,9 @@ class RedactingFormatter(logging.Formatter):
 
     def __init__(self, fields: List[str]) -> None:
         super(RedactingFormatter, self).__init__(self.FORMAT)
-        self.fields = fields
-
+        
     def format(self, record: logging.LogRecord) -> str:
-        """This func returns formatted string."""
-        message: str = filter_datum(
-            self.fields, self.REDACTION,
-            super().format(record),
-            self.SEPARATOR)
-        return message
+        NotImplementedError
 
 
 def filter_datum(fields: List[str], redaction: str,
