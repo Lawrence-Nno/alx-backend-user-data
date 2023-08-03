@@ -36,7 +36,7 @@ def get_logger() -> logging.Logger:
 
 
 def get_db() -> mysql.connector.connection.MySQLConnection:
-    """ Returns a connector to a MySQL database """
+    """ THis func returns a connector to a MySQL database """
     username = environ.get("PERSONAL_DATA_DB_USERNAME", "root")
     password = environ.get("PERSONAL_DATA_DB_PASSWORD", "")
     host = environ.get("PERSONAL_DATA_DB_HOST", "localhost")
@@ -51,7 +51,7 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
 
 def main():
     """
-    Obtain a database connection using get_db and retrieves all rows
+    THis func obtains a database connection using get_db and retrieves all rows
     in the users table and display each row under a filtered format
     """
     db = get_db()
