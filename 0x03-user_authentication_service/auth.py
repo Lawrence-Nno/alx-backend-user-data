@@ -11,15 +11,15 @@ from typing import Union
 
 
 def _hash_password(password: str) -> str:
-    """ This func takes in a string argument, converts it to unicode
-    and returns salted, hashed password as bytestring
+    """This func takes in a string argument, converts it to 
+       unicode and returns salted, hashed password as bytestring
     """
     return hashpw(password.encode('utf-8'), gensalt())
 
 
 def _generate_uuid() -> str:
-    """ This func generates UUID
-    and Returns string representation of new UUID
+    """ This func generates UUID and Returns 
+        string representation of new UUID
     """
     return str(uuid4())
 
@@ -97,7 +97,7 @@ class Auth:
 
     def update_password(self, reset_token: str, password: str) -> None:
         """ This func uses the reset_token to find the corresponding user.
-            If it does'nt exist, raises a ValueError exception.
+            If it doesn't exist, raises a ValueError exception.
         """
         if reset_token is None or password is None:
             return None
