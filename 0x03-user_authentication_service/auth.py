@@ -100,8 +100,9 @@ class Auth:
         return reset_token
 
     def update_password(self, reset_token: str, password: str) -> None:
-        """ This func uses the reset_token to find the corresponding user.
-            If it does not exist, raises a ValueError exception.
+        """ This func uses the reset_token to find the 
+        corresponding user. If it does not exist, 
+        raises a ValueError exception.
         """
         if reset_token is None or password is None:
             return None
