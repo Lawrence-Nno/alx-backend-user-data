@@ -11,14 +11,14 @@ from typing import Union
 
 
 def _hash_password(password: str) -> str:
-    """ Takes in string arg, converts to unicode
+    """ This func takes in string arg, converts to unicode
     Returns salted, hashed pswd as bytestring
     """
     return hashpw(password.encode('utf-8'), gensalt())
 
 
 def _generate_uuid() -> str:
-    """ Generates UUID
+    """ THis func generates UUID
     Returns string representation of new UUID
     """
     return str(uuid4())
@@ -29,11 +29,12 @@ class Auth:
     """
 
     def __init__(self):
-        """ Instance """
+        """ Instance Initialization """
         self._db = DB()
 
     def register_user(self, email: str, password: str) -> User:
-        """ Registers and returns a new user if email isn't listed"""
+        """ This func registers and returns a new user
+        if email isn't listed"""
         try:
             self._db.find_user_by(email=email)
             raise ValueError(f"User {email} already exists")
@@ -43,7 +44,8 @@ class Auth:
             return new_user
 
     def valid_login(self, email: str, password: str) -> bool:
-        """ Checks if user pswd is valid, locating by email """
+        """ This func checks if user password is valid, 
+        locating by email """
         try:
             found_user = self._db.find_user_by(email=email)
             return checkpw(
@@ -54,7 +56,8 @@ class Auth:
             return False
 
     def create_session(self, email: str) -> str:
-        """ Creates session ID using UUID, finds user by email """
+        """ This func creates session ID using UUID, 
+        finds user by email """
         try:
             found_user = self._db.find_user_by(email=email)
         except NoResultFound:
@@ -65,7 +68,7 @@ class Auth:
         return session_id
 
     def get_user_from_session_id(self, session_id: str) -> Union[str, None]:
-        """ Finds user by session_id """
+        """ This func finds user by session_id """
         if session_id is None:
             return None
         try:
@@ -75,7 +78,7 @@ class Auth:
             return None
 
     def destroy_session(self, user_id: str) -> None:
-        """ Updates user's session_id to None"""
+        """ THis func updates user's session_id to None"""
         if user_id is None:
             return None
         try:
@@ -85,7 +88,8 @@ class Auth:
             return None
 
     def get_reset_password_token(self, email: str) -> str:
-        """ Finds user by email, updates user's reset_toke with UUID """
+        """ THis func finds user by email, 
+        updates user's reset_toke with UUID """
         try:
             found_user = self._db.find_user_by(email=email)
         except NoResultFound:
@@ -96,8 +100,8 @@ class Auth:
         return reset_token
 
     def update_password(self, reset_token: str, password: str) -> None:
-        """ Use the reset_token to find the corresponding user.
-            If it does not exist, raise a ValueError exception.
+        """ This func uses the reset_token to find the corresponding user.
+            If it does not exist, raises a ValueError exception.
         """
         if reset_token is None or password is None:
             return None
