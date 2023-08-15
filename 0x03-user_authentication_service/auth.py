@@ -18,7 +18,7 @@ def _hash_password(password: str) -> str:
 
 
 def _generate_uuid() -> str:
-    """ THis func generates UUID
+    """ This func generates UUID
     Returns string representation of new UUID
     """
     return str(uuid4())
@@ -116,3 +116,4 @@ class Auth:
         self._db.update_user(user.id,
                              hashed_password=hashed_password,
                              reset_token=None)
+
